@@ -18,13 +18,14 @@ public class DrawingFrame extends JFrame
 		setupFrame();
 	}
 	
-	public void setupFrame()
+	private void setupFrame()
 	{
 		this.setContentPane(appPanel);
 		this.setTitle("Drawing");
-		this.setSize(new Dimension(500, 500));
-		this.setVisible(true);
+		this.setSize(new Dimension(400, 600));
 		this.setResizable(true);
+		this.setVisible(true);
+		
 	}
 	
 	

@@ -1,11 +1,14 @@
 package drawing.view;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import drawing.controller.DrawingController;
 import java.util.ArrayList;
 import java.awt.Rectangle;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class ShapePanel extends JPanel
 {
@@ -56,5 +59,20 @@ public class ShapePanel extends JPanel
 			rectangleList.add(currentRectangle);
 		}
 		this.repaint();
+	}
+	
+	@Override
+	protected void paintComponent(Graphics graphics)
+	{
+		//this.setBackground(getRandomColor()); very bad design choice!!! hurts eyes
+		Graphics2D drawingGraphics = (Graphics2D) graphics;
+		for(Rectangle currentRectangle : rectangleList)
+		{
+			drawingGraphics.setColor(getRandomColor());
+			int strokeWidth = (int) (Math.random() * 10) + 1;
+			drawingGraphics.setStroke(new BasicStroke(strokeWidth));
+			drawingGraphics.draw(currentRectangle);
+		}
+		
 	}
 }

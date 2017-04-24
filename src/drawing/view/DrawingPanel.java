@@ -2,8 +2,11 @@ package drawing.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import drawing.controller.DrawingController;
+import java.awt.event.ActionEvent;
 
 public class DrawingPanel extends JPanel 
 {
@@ -33,7 +36,7 @@ public class DrawingPanel extends JPanel
 	{
 		this.setLayout(baseLayout_1);
 		this.setBackground(Color.GRAY);
-		this.setPreferredSize(new Dimension(500, 500));
+		this.setMinimumSize(new Dimension(600, 600));
 		
 		this.add(rectangleButton);
 		this.add(shapePanel);
@@ -51,7 +54,13 @@ public class DrawingPanel extends JPanel
 	
 	private void setupListeners()
 	{
-		
+		rectangleButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				shapePanel.addRectangles();
+			}
+		});
 	}
 
 }
