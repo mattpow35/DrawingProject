@@ -71,7 +71,16 @@ public class ShapePanel extends JPanel
 			drawingGraphics.setColor(getRandomColor());
 			int strokeWidth = (int) (Math.random() * 10) + 1;
 			drawingGraphics.setStroke(new BasicStroke(strokeWidth));
-			drawingGraphics.draw(currentRectangle);
+			
+			int randomness = (int) (Math.random() * 35);
+			if (randomness % 5 == 0 || randomness % 7 == 0)
+			{
+				drawingGraphics.fill(currentRectangle);
+			}
+			else
+			{
+				drawingGraphics.draw(currentRectangle);
+			}
 		}
 		
 	}
