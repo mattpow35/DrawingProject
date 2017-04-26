@@ -3,6 +3,9 @@ package drawing.view;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
+
+import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import drawing.controller.DrawingController;
 import java.util.ArrayList;
@@ -12,6 +15,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDateTime;
 
 
 public class ShapePanel extends JPanel
@@ -232,5 +239,29 @@ public class ShapePanel extends JPanel
 				graphics.draw(currentShape);
 			}
 		}
+	}
+	
+	public void savePanel()
+	{
+		BufferedImage panelImage = new BufferedImage(this.getSize().width, this.getSize().height, BufferedImage.TYPE_INT_ARGB);
+		Graphics fileGraphics = panelImage.getGraphics();
+		
+		Color background = new Color(getBackground().getRed(), getBackground().getGreen(), getBackground().getBlue());
+		fileGraphics.setColor(background);
+		fileGraphics.fillRect(0, 0, this.getSize().width, this.getSize().height);
+		this.printAll(fileGraphics);
+		fileGraphics.dispose();
+		
+		try
+		{
+			ImageIO.write(panelImage, "png", new File("Java Shape Art " + LocalDateTime.now().getHour() + "-" + LocalDateTime.now().getMinute() + ".png"));
+		}
+		catch(IOException error)
+		{
+			JOptionPane.showMessageDialog(null, "Save not completed, error occured.");
+		}
+		
+		
+
 	}
 }

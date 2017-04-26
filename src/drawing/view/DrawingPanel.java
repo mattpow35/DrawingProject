@@ -20,6 +20,7 @@ public class DrawingPanel extends JPanel
 	private JButton polygonButton;
 	private JButton resetButton;
 	private ShapePanel shapePanel;
+	private JButton saveButton;
 	
 	public DrawingPanel(DrawingController baseController)
 	{
@@ -34,6 +35,8 @@ public class DrawingPanel extends JPanel
 		triangleButton = new JButton("Draw Triangles");
 		polygonButton = new JButton("Draw Polygons");
 		resetButton = new JButton("Reset Panel");
+		saveButton = new JButton("Save");
+		
 		
 		
 		setupPanel();
@@ -55,6 +58,7 @@ public class DrawingPanel extends JPanel
 		this.add(polygonButton);
 		this.add(shapePanel);
 		this.add(resetButton);
+		this.add(saveButton);
 	}
 	
 	private void setupLayout()
@@ -75,7 +79,8 @@ public class DrawingPanel extends JPanel
 		baseLayout_1.putConstraint(SpringLayout.WEST, ellipsesButton, 0, SpringLayout.WEST, rectangleButton);
 		baseLayout_1.putConstraint(SpringLayout.NORTH, circleButton, 6, SpringLayout.SOUTH, rectangleButton);
 		baseLayout_1.putConstraint(SpringLayout.WEST, circleButton, 0, SpringLayout.WEST, rectangleButton);
-		
+		baseLayout_1.putConstraint(SpringLayout.NORTH, saveButton, 6, SpringLayout.SOUTH, resetButton);
+		baseLayout_1.putConstraint(SpringLayout.WEST, saveButton, 0, SpringLayout.WEST, rectangleButton);
 		
 	}
 	
@@ -126,6 +131,14 @@ public class DrawingPanel extends JPanel
 			public void actionPerformed(ActionEvent click)
 			{
 				shapePanel.reset();
+			}
+		});
+		
+		saveButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				shapePanel.savePanel();
 			}
 		});
 	}
