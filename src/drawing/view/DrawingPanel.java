@@ -171,6 +171,25 @@ public class DrawingPanel extends JPanel
 				shapePanel.savePanel();
 			}
 		});
+		
+		randomArrayButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				graphPanel.setData(setupArray());
+			}
+		});
+		
+		sortArrayButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				graphPanel.sortData();
+			}
+		});
+		
+		
+		
 	}
 	
 	
