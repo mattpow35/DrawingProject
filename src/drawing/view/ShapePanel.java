@@ -138,15 +138,29 @@ public class ShapePanel extends JPanel
 		
 		for(int index = 0; index < 30; index ++)
 		{
+			
 			int vertexCount = 3;
 			int [] xVertices = new int [vertexCount];
 			int [] yVertices = new int [vertexCount];
+			boolean flip = true;
 			for(int vertex = 0; vertex < vertexCount; vertex ++)
 			{
-				int xCorner = (int) (Math.random() * this.getWidth());
-				int yCorner = (int) (Math.random() * this.getHeight());
+				int skew = -1 * (int) (Math.random() * Math.abs((this.getHeight() - this.getWidth())));
+				int originish;
+				if(flip)
+				{
+					originish = (int) (Math.min(Math.random() * this.getWidth(), Math.random() * this.getHeight()));
+				}
+				else
+				{
+					originish = (int) (Math.max(Math.random() * this.getWidth(), Math.random() * this.getHeight()));
+				}
+				//originish = (int) (Math.random() * originish) % 149;
+				int xCorner = (int) (Math.random() * 50) + originish + skew;
+				int yCorner = (int) (Math.random() * 50) + originish - skew;
 				xVertices[vertex] = xCorner;
 				yVertices[vertex] = yCorner;
+				flip = !flip;
 			}
 			Polygon current = new Polygon(xVertices, yVertices, vertexCount);
 			triangleList.add(current);
